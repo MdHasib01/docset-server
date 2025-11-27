@@ -1,0 +1,38 @@
+version: "3.8"
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: mdhasib01/doc-set-server:latest
+    container_name: doc_set
+    restart: unless-stopped
+    env_file:
+      - .env
+    ports:
+      - "${APP_PORT:-8009}:8080"
+    depends_on:
+      - db
+    networks:
+      - appnet
+
+  db:
+    image: postgres:15
+    container_name: doc_set_pg
+    restart: unless-stopped
+    env_file:
+      - .env
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    ports:
+      - "5400:5432"
+    networks:
+      - appnet
+
+volumes:
+  pgdata:
+    name: pgdata
+
+networks:
+  appnet:
+    driver: bridge

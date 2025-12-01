@@ -1,1 +1,1 @@
-DROP TABLE IF EXISTS specialities;
+DROP TABLE IF EXISTS specilities CASCADE;

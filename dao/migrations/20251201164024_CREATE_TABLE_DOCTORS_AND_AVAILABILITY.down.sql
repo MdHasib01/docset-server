@@ -1,0 +1,2 @@
+DROP TABLE IF EXISTS doctor_availabilities CASCADE;
+DROP TABLE IF EXISTS doctors CASCADE;
